@@ -58,6 +58,10 @@ th, td {
     text-align: left;
 }
 
+tr.highlight{
+    background-color: yellow;
+}
+
 th, td{
     padding:0.5em;
 }

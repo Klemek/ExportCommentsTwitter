@@ -7,7 +7,8 @@ $.ajaxPrefilter(function (options) {
 });
 
 const misc = {
-  getFileName:(f) => f.split('\\').pop().split('/').pop()
+  getFileName:(f) => f.split('\\').pop().split('/').pop(),
+  randint: (max) => Math.floor(Math.random()*max),
 };
 
 function process(){
@@ -45,6 +46,9 @@ function process(){
   }
 
   if (file) {
+    $('#select').hide();
+    $('#submit').hide();
+
     const reader = new FileReader();
     reader.readAsText(file, 'UTF-8');
     reader.onload = function (e) {
@@ -52,6 +56,7 @@ function process(){
         const content = JSON.parse(e.target.result);
         if(content.length && content.length > 0 && content[0].message && content[0].statusId){
           output.show();
+          output.html('<tr><th>User</th><th>Tweet</th><th></th></tr>');
           content.forEach(function(line){
               lines.push(line.statusId);
 
@@ -62,35 +67,44 @@ function process(){
 
               output.append(`<tr id="${line.statusId}"><td>...</td><td>${text}</td><td><a href="https://twitter.com/a/status/${line.statusId}" target="_blank">Link</a></td></tr>`);
           });
+
+          $('#random').show().click(function(){
+            const i = misc.randint(lines.length);
+            $('tr').removeClass('highlight');
+            $(`#${lines[i]}`).addClass('highlight');
+          });
+
           setTimeout(function(){
             processLine(0);
           });
         }else{
           message.text('Invalid file format');
+          $('#select').show();
+          $('#submit').show();
         }
       }catch(error){
         console.error(error);
         message.text('Invalid file format');
+        $('#select').show();
+        $('#submit').show();
       }
     };
     reader.onerror = function (e) {
       console.error(e);
       message.text('Error reading file');
+      $('#select').show();
+      $('#submit').show();
     };
   }
 }
 
 $(document).ready(function(){
   const fileInput = $('#file');
-  const filePreview = $('#filePreview');
   $('#select').click(function(){
     fileInput.click();
   });
-  filePreview.click(function(){
-    fileInput.click();
-  });
   fileInput.on('input', function(){
-    filePreview.text(misc.getFileName(fileInput.val()));
+    $('#filePreview').text(misc.getFileName(fileInput.val()));
   });
 
   $('#form').submit(function(e){
