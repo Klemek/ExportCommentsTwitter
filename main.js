@@ -31,7 +31,7 @@ function process(){
       success: function (html) {
         const content = $(html).find('.js-original-tweet')[0];
         const name = $(content).attr('data-screen-name');
-        $(`#${id}`).find('td:first-child').html(`<a href="https://twitter.com/${name}" target="_blank">@${name}</a>`);
+        $(`#${id}`).find('td:nth-child(2)').html(`<a href="https://twitter.com/${name}" target="_blank">@${name}</a>`);
         setTimeout(function(){
           processLine(i+1);
         });
@@ -56,8 +56,8 @@ function process(){
         const content = JSON.parse(e.target.result);
         if(content.length && content.length > 0 && content[0].message && content[0].statusId){
           output.show();
-          output.html('<tr><th>User</th><th>Tweet</th><th></th></tr>');
-          content.forEach(function(line){
+          output.html('<tr><th></th><th>User</th><th>Tweet</th><th></th></tr>');
+          content.forEach(function(line,i){
               lines.push(line.statusId);
 
               const text = line.message
@@ -65,7 +65,7 @@ function process(){
                 .replace(/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gm,'<a href="$1" target="_blank">$1</a>')
                 .replace(/@(\w*)/gm,'<a href="https://twitter.com/$1" target="_blank">@$1</a>');
 
-              output.append(`<tr id="${line.statusId}"><td>...</td><td>${text}</td><td><a href="https://twitter.com/a/status/${line.statusId}" target="_blank">Link</a></td></tr>`);
+              output.append(`<tr id="${line.statusId}"><td>${i+1}</td><td>...</td><td>${text}</td><td><a href="https://twitter.com/a/status/${line.statusId}" target="_blank">Link</a></td></tr>`);
           });
 
           $('#random').show().click(function(){
