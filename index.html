@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Export Comments Twitter</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="main.js"></script>
+</head>
+<body>
+<h2>Export Comments Twitter<br><small>fix for exportcomments.com</small></h2>
+<p><br>First, export comments from <a href="https://exportcomments.com/export-twitter-followers" target="_blank">exportcomments.com</a> (select tweets)
+    <br>Download the Excel file from there and upload it below.<br><br></p>
+<form id="form" method="GET">
+    <input type="file" id="file" style="display:none">
+    <label id="filePreview">No file selected</label><label class="button" id="select">Select file</label><br>
+    <input class="button" type="submit" value="Process export">
+</form>
+<h2 id="message"></h2>
+<table id="output" style="display:none">
+    <tr><th>User</th><th>Tweet</th><th></th></tr>
+</table>
+</body>
+</html>

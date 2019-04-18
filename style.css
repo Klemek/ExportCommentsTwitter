@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Trebuchet MS", serif;
+    text-align: center;
+}
+
+body{
+    padding:1%;
+    height:100vh;
+    width:100%;
+}
+
+#form{
+    width:40%;
+    margin:auto;
+    text-align: center;
+}
+
+#form > .button{
+    font-size: 1.2em;
+    padding:.2em;
+}
+
+#form > *{
+    margin-bottom: .5em;
+}
+
+#filePreview{
+    border: 2px solid #212121;
+    color: #424242;
+    border-radius: 3px;
+    padding: 0.5em 1em;
+    margin: 0.2em;
+    max-width: 60%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#message, #back{
+    margin-top: 1%;
+    text-align: center;
+}
+
+table{
+    width:100%;
+    margin-bottom: 1%;
+    border: 1px double black;
+}
+
+th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th, td{
+    padding:0.5em;
+}
+
+.button {
+    border: 2px solid #212121;
+    color: #424242;
+    background: white;
+    border-radius: 3px;
+    padding: 0.5em 1em;
+    margin: 0.2em;
+    display:inline-block;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+.button:hover {
+    background: #757575;
+    color: white;
+    cursor: pointer;
+}
+
+.button:active {
+    background: #424242;
+    color: white;
+    font-weight: bold;
+}
+
+.button:focus{
+    outline: 0;
+}
