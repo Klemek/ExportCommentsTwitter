@@ -56,6 +56,7 @@ function process(){
               lines.push(line.statusId);
 
               const text = line.message
+                .replace('\n','<br>')
                 .replace(/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gm,'<a href="$1" target="_blank">$1</a>')
                 .replace(/@(\w*)/gm,'<a href="https://twitter.com/$1" target="_blank">@$1</a>');
 
